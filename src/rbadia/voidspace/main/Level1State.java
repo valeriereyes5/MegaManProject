@@ -114,6 +114,7 @@ public class Level1State extends LevelState {
 		newFloor(this, 9);
 		newPlatforms(getNumPlatforms());
 		newAsteroid(this);
+		newAsteroid(this);
 
 		lastAsteroidTime = -NEW_ASTEROID_DELAY;
 		lastLifeTime = -NEW_MEGAMAN_DELAY;
@@ -608,5 +609,19 @@ public class Level1State extends LevelState {
 
 	public void slowDownMegaMan() {
 		megaMan.setSpeed(megaMan.getDefaultSpeed());
+	}
+	
+	public void giveLife() {
+		int a = GameStatus.livesLeft();
+		
+		GameStatus.setLivesLeftWithI(a+1);
+		GameStatus status = this.getGameStatus();
+		getMainFrame().getLivesValueLabel().setText(Integer.toString(status.getLivesLeft()));
+	}
+
+	@Override
+	public void skipLevel() {
+		// TODO Auto-generated method stub
+		
 	}
 }

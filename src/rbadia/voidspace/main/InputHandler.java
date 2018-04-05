@@ -1,5 +1,6 @@
 package rbadia.voidspace.main;
 
+import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -115,7 +116,7 @@ public class InputHandler implements KeyListener{
 			this.shiftIsPressed = true;
 			break;
 		case KeyEvent.VK_ESCAPE:
-			System.exit(1);
+				System.exit(1);
 			break;
 		case KeyEvent.VK_E:
 			this.eIsPressed = true;

@@ -52,7 +52,6 @@ public class LevelLogic {
 		return mute;
 	}
 
-
 	/**
 	 * Prepare for a new game.
 	 */
@@ -435,6 +434,12 @@ public class LevelLogic {
 		if(ih.isRightPressed()){
 			getLevelState().moveMegaManRight();
 		}
+		if(ih.isIPressed()) {
+			long currentTime = System.currentTimeMillis();
+			if((currentTime - lastBigBulletTime) > 570){
+				lastBigBulletTime = currentTime;
+				getLevelState().giveLife();
+		}}
 	}
 
 	public static void delay(long millis) {

@@ -67,7 +67,6 @@ public abstract class LevelState extends JPanel {
 	public abstract void doGameOverScreen();
 	public abstract void doGameOver();
 	public abstract void doLevelWon();
-	
 	public abstract boolean isLevelWon();
 	
 	// Game Actions in response to user controls
@@ -79,5 +78,7 @@ public abstract class LevelState extends JPanel {
 	public abstract void moveMegaManRight();
 	public abstract void speedUpMegaMan();
 	public abstract void slowDownMegaMan();
+	public abstract void giveLife();
+	public abstract void skipLevel();
 	
 }

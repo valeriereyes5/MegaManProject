@@ -15,7 +15,7 @@ public class GameStatus {
 	private boolean newBigAsteroid;
 	private long asteroidsDestroyed = 0;
 
-	private int livesLeft;
+	private static int livesLeft;
 	private int level = 1;
 	
 	public GameStatus(){
@@ -122,8 +122,13 @@ public class GameStatus {
 		return livesLeft;
 	}
 
-	public synchronized void setLivesLeft(int livesLeft) {
-		this.livesLeft = livesLeft;
+	public synchronized void setLivesLeft(int a) {
+		livesLeft = a;
+	}
+	
+	//A way to add lives without having to change the original to static since it causes problems in the coding
+	public synchronized static void setLivesLeftWithI(int a) {
+		livesLeft = a;
 	}
 
 	public int getLevel() {
@@ -133,5 +138,10 @@ public class GameStatus {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-
-}
+	
+	public static int livesLeft() {
+		return livesLeft;
+	}
+	
+	
+	}
