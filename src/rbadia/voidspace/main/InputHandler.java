@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 /**
  * Handles user input events.
  */
+@SuppressWarnings("unused")
 public class InputHandler implements KeyListener{
 	private boolean leftIsPressed;
 	private boolean rightIsPressed;
@@ -16,9 +17,14 @@ public class InputHandler implements KeyListener{
 	private boolean shiftIsPressed;
 	private boolean eIsPressed;
 	private boolean qIsPressed;
-	private boolean mIsPressed;
+	private static boolean nIsPressed;
 	private boolean sIsPressed;
 	private boolean iIsPressed;
+	private boolean rIsPressed;
+	
+	public static boolean getnIsPressed() {
+		return nIsPressed;
+	}
 
 	private LevelState levelState;
 	//private GameScreen gScreen;
@@ -43,9 +49,10 @@ public class InputHandler implements KeyListener{
 		shiftIsPressed = false;
 		eIsPressed = false;
 		qIsPressed = false;
-		mIsPressed = false;
+		nIsPressed = false;
 		sIsPressed = false;
 		iIsPressed = false;
+		rIsPressed = false;
 	}
 
 	public boolean isLeftPressed() {
@@ -80,8 +87,8 @@ public class InputHandler implements KeyListener{
 		return qIsPressed;
 	}
 
-	public boolean isMPressed() {
-		return mIsPressed;
+	public boolean isNPressed() {
+		return nIsPressed;
 	}
 
 	public boolean isSPressed() {
@@ -91,10 +98,15 @@ public class InputHandler implements KeyListener{
 	public boolean isIPressed() {
 		return iIsPressed;
 	}
+	
+	public boolean isRPressed() {
+		return rIsPressed;
+	}
 
 	/**
 	 * Handle a key input event.
 	 */
+	@SuppressWarnings("static-access")
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_UP:
@@ -124,14 +136,17 @@ public class InputHandler implements KeyListener{
 		case KeyEvent.VK_Q:
 			this.qIsPressed= true;
 			break;
-		case KeyEvent.VK_M:
-			this.mIsPressed= true;
+		case KeyEvent.VK_N:
+			this.nIsPressed= true;
 			break;
 		case KeyEvent.VK_S:
 			this.sIsPressed = true;
 			break;
 		case KeyEvent.VK_I:
 			this.iIsPressed = true;
+			break;
+		case KeyEvent.VK_R:
+			this.rIsPressed = true;
 			break;
 		}
 		e.consume();
@@ -140,6 +155,7 @@ public class InputHandler implements KeyListener{
 	/**
 	 * Handle a key release event.
 	 */
+	@SuppressWarnings("static-access")
 	public void keyReleased(KeyEvent e) {
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_UP:
@@ -167,14 +183,17 @@ public class InputHandler implements KeyListener{
 		case KeyEvent.VK_Q:
 			this.qIsPressed = false;
 			break;
-		case KeyEvent.VK_M:
-			this.mIsPressed = false;
+		case KeyEvent.VK_N:
+			this.nIsPressed = false;
 			break;
 		case KeyEvent.VK_S:
 			this.sIsPressed = false;
 			break;
 		case KeyEvent.VK_I:
 			this.iIsPressed = false;
+			break;
+		case KeyEvent.VK_R:
+			this.rIsPressed = false;
 			break;
 		}
 		e.consume();

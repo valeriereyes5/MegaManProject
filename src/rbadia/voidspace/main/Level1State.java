@@ -29,7 +29,7 @@ import rbadia.voidspace.sounds.SoundManager;
 /**
  * Main game screen. Handles all game graphics updates and some of the game logic.
  */
-public class Level1State extends LevelState {
+public  class Level1State extends LevelState {
 
 	private static final long serialVersionUID = 1L;
 	//protected GraphicsManager graphicsManager;
@@ -613,10 +613,22 @@ public class Level1State extends LevelState {
 	
 	public void giveLife() {
 		int a = GameStatus.livesLeft();
-		
 		GameStatus.setLivesLeftWithI(a+1);
 		GameStatus status = this.getGameStatus();
 		getMainFrame().getLivesValueLabel().setText(Integer.toString(status.getLivesLeft()));
+	}
+	
+	public void resetDestroyedAsteroid() {
+		levelAsteroidsDestroyed = 0;
+		GameStatus status = getGameStatus();
+		status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() - status.getAsteroidsDestroyed());
+	}
+
+	@Override
+	public boolean isLevelSkipped() {
+		if(InputHandler.getnIsPressed()) {
+		return true;}
+		return false;
 	}
 
 	@Override

@@ -106,7 +106,7 @@ public class LevelLogic {
 	//GAME LOOPS ON THE FIRST GAMESCREEN AND RESETS ALL VARIABLE COUNTERS
 	public void gameWon(){
 		//status.setGameStarted(false);  //SENDS TO MAIN SCREEN/ IF COMMENTED OUT LOOPS THE GAME
-		getLevelState().getGameStatus().setGameWon(true);
+		levelState.setCurrentState(LevelState.LEVEL_WON);
 		levelState.doLevelWon();
 
 		// delay to display "Game Won" message for 3 seconds
@@ -318,7 +318,7 @@ public class LevelLogic {
 			if(status.getLivesLeft() == 0) {
 				levelState.setCurrentState(LevelState.GAME_OVER_SCREEN);
 			}
-			if(levelState.isLevelWon()) {
+			if(levelState.isLevelWon() || levelState.isLevelSkipped()) {
 				levelState.setCurrentState(LevelState.LEVEL_WON);
 			}
 			break;
@@ -440,6 +440,12 @@ public class LevelLogic {
 				lastBigBulletTime = currentTime;
 				getLevelState().giveLife();
 		}}
+		if(ih.isRPressed()) {
+			getLevelState().resetDestroyedAsteroid();
+		}
+		if(ih.isNPressed()) {
+			getLevelState().skipLevel();
+		}
 	}
 
 	public static void delay(long millis) {

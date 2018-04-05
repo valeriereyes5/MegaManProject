@@ -14,7 +14,6 @@ public class GameStatus {
 	private boolean newAsteroid2;
 	private boolean newBigAsteroid;
 	private long asteroidsDestroyed = 0;
-
 	private static int livesLeft;
 	private int level = 1;
 	
