@@ -11,7 +11,7 @@ public abstract class GameObject extends Rectangle{
 	
 	public GameObject() {}
 	
-	public GameObject(int xPos, int yPos, int width, int height) {
+	public GameObject(int xPos, int yPos, int width, int height) { 
 		super(xPos, yPos,width, height);
 	}
 	

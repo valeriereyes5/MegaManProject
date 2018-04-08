@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
 		return levelValueLabel;
 	}
 
-	public JLabel getLivesLabel() {
+	public JLabel getLivesLabel() { 
 		return livesLabel;
 	}
 
@@ -92,7 +92,7 @@ public class MainFrame extends JFrame {
 		return fontSize;
 	}
 	
-	public void setFontSize(int fontSize){
+	public void setFontSize(int fontSize){ 
 		this.fontSize = fontSize;
 	}
 

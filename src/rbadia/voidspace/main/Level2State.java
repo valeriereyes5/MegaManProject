@@ -64,4 +64,5 @@ public class Level2State extends Level1State {
 		}
 		return platforms;
 	}
+	
 }

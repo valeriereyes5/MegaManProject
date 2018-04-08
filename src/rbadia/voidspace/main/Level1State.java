@@ -539,7 +539,7 @@ public  class Level1State extends LevelState {
 			this.floor[i] = new Floor(0 + i * Floor.WIDTH, SCREEN_HEIGHT- Floor.HEIGHT/2);
 		}
 
-		return floor;
+		return floor; 
 	}
 
 	public Platform[] newPlatforms(int n){

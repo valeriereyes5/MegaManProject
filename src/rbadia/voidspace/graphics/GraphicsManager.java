@@ -38,7 +38,7 @@ public class GraphicsManager {
 	/**
 	 * Creates a new graphics manager and loads the game images.
 	 */
-	public GraphicsManager(){
+	public GraphicsManager(){ 
 		// load images
 		try {
 			this.megaManImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaMan3.png"));
@@ -86,7 +86,7 @@ public class GraphicsManager {
 	}
 	
 	public void drawPlatform2 (Platform platform, Graphics2D g2d, ImageObserver observer, int i){
-		g2d.drawImage(platformImg, platform.x , platform.y, observer);	
+		g2d.drawImage(platformImg, platform.x , platform.y, observer);
 }
 
 	/**

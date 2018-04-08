@@ -9,6 +9,6 @@ public class Platform extends Rectangle {
 	private static final int HEIGHT = 4;
 
 	public Platform(int xPos, int yPos) {
-		super(xPos, yPos, WIDTH, HEIGHT);
+		super(xPos, yPos, WIDTH, HEIGHT); 
 	}
 }
