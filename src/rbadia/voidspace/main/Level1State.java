@@ -45,14 +45,13 @@ public  class Level1State extends LevelState {
 	protected int damage=0;
 	protected static final int NEW_MEGAMAN_DELAY = 500;
 	protected static final int NEW_ASTEROID_DELAY = 500;
-
 	protected long lastAsteroidTime;
 	protected long lastLifeTime;
 
 	protected Rectangle asteroidExplosion;
-
+	
 	protected Random rand;
-
+	
 	protected Font originalFont;
 	protected Font bigFont;
 	protected Font biggestFont;
@@ -87,7 +86,7 @@ public  class Level1State extends LevelState {
 	public Asteroid getAsteroid() 				{ return asteroid; 		}
 	public List<Bullet> getBullets() 			{ return bullets; 		}
 	public List<BigBullet> getBigBullets()		{ return bigBullets;   	}
-
+	
 	// Level state methods
 	// The method associated with the current level state will be called 
 	// repeatedly during each LevelLoop iteration until the next a state 
@@ -315,7 +314,9 @@ public  class Level1State extends LevelState {
 		}
 	}
 
+
 	protected void drawAsteroid() {
+		//asteroid.setSpeed(rand.nextInt(5));
 		Graphics2D g2d = getGraphics2D();
 		GameStatus status = getGameStatus();
 		if((asteroid.getX() + asteroid.getWidth() >  0)){
@@ -337,8 +338,8 @@ public  class Level1State extends LevelState {
 				getGraphicsManager().drawAsteroidExplosion(asteroidExplosion, g2d, this);
 			}
 		}
-	}
-
+		}
+ 
 	protected void drawMegaMan() {
 		//draw one of three possible MegaMan poses according to situation
 		Graphics2D g2d = getGraphics2D();
@@ -472,12 +473,13 @@ public  class Level1State extends LevelState {
 		lastAsteroidTime = System.currentTimeMillis();
 		// play asteroid explosion sound
 		this.getSoundManager().playAsteroidExplosionSound();
+		
 	}
 
 	/**
 	 * Fire a bullet from life.
 	 */
-	public void fireBullet(){
+	public void fireBullet(){ 
 		Bullet bullet = new Bullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
 				megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
 		bullets.add(bullet);
@@ -558,6 +560,8 @@ public  class Level1State extends LevelState {
 		int xPos = (int) (SCREEN_WIDTH - Asteroid.WIDTH);
 		int yPos = rand.nextInt((int)(SCREEN_HEIGHT - Asteroid.HEIGHT- 32));
 		asteroid = new Asteroid(xPos, yPos);
+		
+		 
 		return asteroid;
 	}
 

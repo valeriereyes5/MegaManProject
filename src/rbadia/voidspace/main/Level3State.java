@@ -1,8 +1,10 @@
 package rbadia.voidspace.main;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 import rbadia.voidspace.graphics.GraphicsManager;
+import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.Platform;
 import rbadia.voidspace.sounds.SoundManager;
 import sun.lwawt.PlatformComponent;
@@ -15,7 +17,7 @@ public class Level3State extends Level2State {
 
 	protected boolean Direction = true;
 	//If true platform moves right///
-	//iff alse, left
+	//iff alse, left 
 	
 	
 	//constructor//
@@ -84,5 +86,19 @@ public class Level3State extends Level2State {
 			getGraphicsManager().drawPlatform(platforms[i], g2d, this, i);
 		}
 	}
-
+	public void removeAsteroid(Asteroid asteroid){
+		// "remove" asteroid
+		asteroidExplosion = new Rectangle(
+				asteroid.x,
+				asteroid.y,
+				asteroid.getPixelsWide(),
+				asteroid.getPixelsTall());
+		asteroid.setLocation(-asteroid.getPixelsWide(), -asteroid.getPixelsTall());
+		this.getGameStatus().setNewAsteroid(true);
+		lastAsteroidTime = System.currentTimeMillis();
+		// play asteroid explosion sound
+		this.getSoundManager().playAsteroidExplosionSound();
+		asteroid.setSpeed(rand.nextInt(9)+1);
+		System.out.println("speed is" + asteroid.getSpeed());
+	}
 }

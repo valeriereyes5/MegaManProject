@@ -16,4 +16,7 @@ public class Asteroid extends GameObject {
 	public int getDefaultSpeed(){
 		return DEFAULT_SPEED;
 	}
+	public int setDefaultSpeed(int a){
+		return DEFAULT_SPEED;
+	}
 }

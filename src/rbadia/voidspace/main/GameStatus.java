@@ -108,7 +108,7 @@ public class GameStatus {
 	public synchronized long getAsteroidsDestroyed() {
 		return asteroidsDestroyed;
 	}
-
+ 
 	public synchronized void setAsteroidsDestroyed(long asteroidsDestroyed) {
 		this.asteroidsDestroyed = asteroidsDestroyed;
 	}

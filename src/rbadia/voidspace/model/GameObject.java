@@ -12,7 +12,7 @@ public abstract class GameObject extends Rectangle{
 	public GameObject() {}
 	
 	public GameObject(int xPos, int yPos, int width, int height) { 
-		super(xPos, yPos,width, height);
+		super(xPos, yPos,width, height); 
 	}
 	
 	public int getPixelsWide() {

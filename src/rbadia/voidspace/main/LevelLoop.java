@@ -34,7 +34,7 @@ public class LevelLoop implements Runnable{
 			gameLogic.stateTransition(inputHandler, levelState);
 			levelState.repaint();
 			
-			LevelLogic.delay(1000/60);
+			LevelLogic.delay(1000/60); 
 			
 //			try{
 //				// sleep/wait for 1/60th of a second,

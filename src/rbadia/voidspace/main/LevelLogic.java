@@ -399,7 +399,7 @@ public class LevelLogic {
 				stack++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed()-0);
 			}
-			else if(stack>= 1){
+			else if(stack>= 1){ 
 				long currentTime = System.currentTimeMillis();
 				if((currentTime - lastBigBulletTime) > 1000){
 					lastBigBulletTime = currentTime;
