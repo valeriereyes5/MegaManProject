@@ -13,13 +13,16 @@ public class Level3State extends Level2State {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6330305833847871298L;
 
+	private static final long serialVersionUID = 6330305833847871298L;
+	boolean place = false; 
+	int randomnum = rand.nextInt(2);
+	int randnumcase;
 	protected boolean Direction = true;
 	//If true platform moves right///
-	//iff alse, left 
-	
-	
+	//iff alse, left  
+
+
 	//constructor//
 	public Level3State(int level, MainFrame frame, GameStatus status, LevelLogic gameLogic, InputHandler inputHandler,
 			GraphicsManager graphicsMan, SoundManager soundMan) {
@@ -36,7 +39,7 @@ public class Level3State extends Level2State {
 
 	}
 	public boolean PlatformReachesEdge() {
-		boolean value = false;
+		boolean value = false; 
 		for(int i=0; i<getNumPlatforms(); i++){
 			if ((platforms[i].getX() + platforms[i].getWidth()) == this.getWidth()) {
 				value = true;
@@ -50,13 +53,13 @@ public class Level3State extends Level2State {
 	public int Direction() {
 		int Direction = 0;
 		for(int i=0; i<getNumPlatforms(); i++){
-		if(platforms[i].getX() + platforms[i].getWidth() == this.getWidth()) {
-			Direction = -1;
-		}
-		
-		else if (platforms[i].getX() < 0) {
-			Direction = 1;
-		}
+			if(platforms[i].getX() + platforms[i].getWidth() == this.getWidth()) {
+				Direction = -1;
+			}
+
+			else if (platforms[i].getX() < 0) {
+				Direction = 1;
+			}
 		}
 		return Direction;
 	}
@@ -72,7 +75,7 @@ public class Level3State extends Level2State {
 				}
 				else if(platforms[i].getX() + platforms[i].getWidth() >= 500) {
 					Direction = false;
-					
+
 				}
 			}
 			else {
@@ -93,12 +96,72 @@ public class Level3State extends Level2State {
 				asteroid.y,
 				asteroid.getPixelsWide(),
 				asteroid.getPixelsTall());
-		asteroid.setLocation(-asteroid.getPixelsWide(), -asteroid.getPixelsTall());
+
 		this.getGameStatus().setNewAsteroid(true);
 		lastAsteroidTime = System.currentTimeMillis();
 		// play asteroid explosion sound
 		this.getSoundManager().playAsteroidExplosionSound();
 		asteroid.setSpeed(rand.nextInt(9)+1);
 		System.out.println("speed is" + asteroid.getSpeed());
+
+		switch(randomnum) {
+		case 0: { 
+			asteroid.setLocation(-asteroid.getPixelsWide(), -asteroid.getPixelsTall());
+			place = false;
+			}
+		case 1: {
+			asteroid.setLocation(0,0);
+			place= true;
+		}
+		System.out.println("rand num"+randomnum);
+		}
+
+	}
+	@Override
+	protected void drawAsteroid() {
+		//System.out.println("spot"+asteroid.getX());
+		Graphics2D g2d = getGraphics2D();
+		if(place == true) {
+
+			if((asteroid.getX() + asteroid.getPixelsWide() <  this.getWidth())) {
+				asteroid.translate(asteroid.getSpeed(), asteroid.getSpeed()/2);
+				getGraphicsManager().drawAsteroid(asteroid, g2d, this);	
+
+			}
+			else {
+				long currentTime = System.currentTimeMillis();
+				if((currentTime - lastAsteroidTime) > NEW_ASTEROID_DELAY){
+					asteroid.setLocation(0,
+							rand.nextInt(SCREEN_HEIGHT - asteroid.getPixelsTall() - 32));
+				}
+				else {
+					// draw explosion
+					getGraphicsManager().drawAsteroidExplosion(asteroidExplosion, g2d, this);
+				}
+			}
+		}
+		// if false, it comes from the right
+		else {
+			
+
+			if((asteroid.getX() + asteroid.getPixelsWide() >  0)) {
+
+				asteroid.translate(-asteroid.getSpeed(), asteroid.getSpeed()/2);
+				getGraphicsManager().drawAsteroid(asteroid, g2d, this);	
+
+			}
+			else {
+				long currentTime = System.currentTimeMillis();
+				if((currentTime - lastAsteroidTime) > NEW_ASTEROID_DELAY){
+					asteroid.setLocation(SCREEN_WIDTH - asteroid.getPixelsWide(),
+							rand.nextInt(SCREEN_HEIGHT - asteroid.getPixelsTall() - 32));
+				}
+				else {
+					// draw explosion
+					getGraphicsManager().drawAsteroidExplosion(asteroidExplosion, g2d, this);
+				}
+
+				}
+		}	
 	}
 }
