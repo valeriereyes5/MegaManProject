@@ -56,6 +56,9 @@ public class Level3State extends Level2State {
 		checkMegaManAsteroidCollisions();
 		checkAsteroidFloorCollisions();
 		DrawPowerups();
+		checkMegaManPowerUpCollisions();
+		
+		//removePowerup(powerups);
 
 		// update asteroids destroyed (score) label  
 		getMainFrame().getDestroyedValueLabel().setText(Long.toString(status.getAsteroidsDestroyed()));
@@ -199,11 +202,30 @@ public class Level3State extends Level2State {
 			}
 		}	
 	}
+	public void removePowerup(PowerUp powerup){
+		// "remove" asteroid
+		
+		powerup.setLocation(100000, 100000);
+		//this.getGameStatus().setNewAsteroid(true);
+		//lastAsteroidTime = System.currentTimeMillis();
+		// play asteroid explosion sound
+		//this.getSoundManager().playAsteroidExplosionSound();
+		
+	}
 	protected void DrawPowerups() {
 		Graphics2D g2d = getGraphics2D();
 		getGraphicsManager().drawPowerUp(powerups, g2d, this);
 	}
-	
+	protected void checkMegaManPowerUpCollisions() {
+		GameStatus status = getGameStatus();
+
+		if(powerups.intersects(megaMan)){
+			System.out.println("aye");
+			status.setLivesLeft(status.getLivesLeft() + 5);
+			removePowerup(powerups);
+		}
+	}
 }
+
 
 
