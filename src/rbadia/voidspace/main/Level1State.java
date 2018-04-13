@@ -76,6 +76,7 @@ public  class Level1State extends LevelState {
 		backBuffer = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		this.setGraphics2D(backBuffer.createGraphics());
 		rand = new Random();
+	
 	}
 
 	// Getters

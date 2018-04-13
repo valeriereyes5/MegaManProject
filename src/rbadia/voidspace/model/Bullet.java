@@ -1,6 +1,6 @@
 package rbadia.voidspace.model;
 
-/**
+/** 
  * Represents a bullet fired by a ship.
  */
 public class Bullet extends GameObject {

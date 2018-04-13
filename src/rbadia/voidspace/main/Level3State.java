@@ -5,12 +5,14 @@ import java.awt.Rectangle;
 
 import rbadia.voidspace.graphics.GraphicsManager;
 import rbadia.voidspace.model.Asteroid;
+import rbadia.voidspace.model.Bullet;
 import rbadia.voidspace.model.Platform;
+import rbadia.voidspace.model.PowerUp;
 import rbadia.voidspace.sounds.SoundManager;
 import sun.lwawt.PlatformComponent;
 
 public class Level3State extends Level2State {
-	/**
+	/** 
 	 * 
 	 */
 
@@ -21,13 +23,46 @@ public class Level3State extends Level2State {
 	protected boolean Direction = true;
 	//If true platform moves right///
 	//iff alse, left  
-
+	protected int numpowerups = 3;
+	protected PowerUp powerups = new PowerUp(this.getWidth()/2,this.getHeight()/2);
 
 	//constructor//
 	public Level3State(int level, MainFrame frame, GameStatus status, LevelLogic gameLogic, InputHandler inputHandler,
 			GraphicsManager graphicsMan, SoundManager soundMan) {
 		super(level, frame, status, gameLogic, inputHandler, graphicsMan, soundMan);
 		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public void updateScreen(){
+		Graphics2D g2d = getGraphics2D();
+		GameStatus status = this.getGameStatus();
+
+		// save original font - for later use
+		if(this.originalFont == null){
+			this.originalFont = g2d.getFont();
+			this.bigFont = originalFont;
+		}
+
+		clearScreen();
+		drawStars(50);
+		drawFloor();
+		drawPlatforms();
+		drawMegaMan();
+		drawAsteroid();
+		drawBullets();
+		drawBigBullets();
+		checkBullletAsteroidCollisions();
+		checkBigBulletAsteroidCollisions();
+		checkMegaManAsteroidCollisions();
+		checkAsteroidFloorCollisions();
+		DrawPowerups();
+
+		// update asteroids destroyed (score) label  
+		getMainFrame().getDestroyedValueLabel().setText(Long.toString(status.getAsteroidsDestroyed()));
+		// update lives left label
+		getMainFrame().getLivesValueLabel().setText(Integer.toString(status.getLivesLeft()));
+		//update level label
+		getMainFrame().getLevelValueLabel().setText(Long.toString(status.getLevel()));
 	}
 	@Override
 	public Platform[] newPlatforms(int n){
@@ -108,7 +143,7 @@ public class Level3State extends Level2State {
 		case 0: { 
 			asteroid.setLocation(-asteroid.getPixelsWide(), -asteroid.getPixelsTall());
 			place = false;
-			}
+		}
 		case 1: {
 			asteroid.setLocation(0,0);
 			place= true;
@@ -142,7 +177,7 @@ public class Level3State extends Level2State {
 		}
 		// if false, it comes from the right
 		else {
-			
+
 
 			if((asteroid.getX() + asteroid.getPixelsWide() >  0)) {
 
@@ -161,7 +196,14 @@ public class Level3State extends Level2State {
 					getGraphicsManager().drawAsteroidExplosion(asteroidExplosion, g2d, this);
 				}
 
-				}
+			}
 		}	
 	}
+	protected void DrawPowerups() {
+		Graphics2D g2d = getGraphics2D();
+		getGraphicsManager().drawPowerUp(powerups, g2d, this);
+	}
+	
 }
+
+
