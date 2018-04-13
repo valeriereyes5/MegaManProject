@@ -45,7 +45,7 @@ public class MegaManMain {
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		}
-		
+
 		frame.addKeyListener(inputHandler);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -57,7 +57,10 @@ public class MegaManMain {
 			LevelState level1State = new Level1State(1, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
 			LevelState level2State = new Level2State(2, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
 			LevelState level3State = new Level3State(3, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
-			LevelState levels[] = { level1State, level2State,level3State };
+			LevelState level4State = new Level4State(4, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
+			LevelState level5State = new Level5State(5, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
+			LevelState LevelBossState = new LevelBossState(6, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
+			LevelState levels[] = { level1State, level2State,level3State, level4State, level5State, LevelBossState  };
 
 			String outcome = "CONGRATS!! YOU WON!!";
 			for (LevelState nextLevel : levels) {
@@ -67,7 +70,7 @@ public class MegaManMain {
 				gameLogic.setLevelState(nextLevel);
 				inputHandler.setLevelState(nextLevel);
 				gameStatus.setLevel(nextLevel.getLevel());
-				
+
 				frame.setVisible(true);  // TODO verify whether this is necessary
 				startInitialMusic();
 
@@ -86,7 +89,7 @@ public class MegaManMain {
 		}
 		System.exit(0);
 	}
-	
+
 	public static void startInitialMusic() throws InterruptedException, IOException {
 		// Music 
 		// allows music to be played while playing
